@@ -5,7 +5,7 @@ import MovieList from '../components/movielist'
 import { getMovies } from '../actions'
 
 
-const Home = ({ movies }) => {
+const Home = ({ movies, images }) => {
   // const [movies, setMovies] = useState([])
 
   // useEffect(() => {
@@ -26,7 +26,7 @@ const Home = ({ movies }) => {
               <SideMenu />
             </div>
             <div className="col-lg-9">
-              <Carousel />
+              <Carousel images={images} />
               <div className="row">
                 <MovieList movies={movies || []} />
               </div>
@@ -40,8 +40,10 @@ const Home = ({ movies }) => {
 
 Home.getInitialProps = async () => {
   const movies = await getMovies()
+  const images = movies.map(movie => ({ id: `image-${movie.id}`, image: movie.image }))
   return {
-    movies
+    movies,
+    images
   }
 }
 
