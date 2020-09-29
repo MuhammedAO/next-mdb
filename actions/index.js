@@ -9,7 +9,7 @@ const MOVIE_DATA = [
     genre: 'drama',
     image: 'https://m.media-amazon.com/images/M/MV5BNjQ2NDA3MDcxMF5BMl5BanBnXkFtZTgwMjE5NTU0NzE@._V1_CR0,60,640,360_AL_UX477_CR0,0,477,268_AL_.jpg',
     cover: 'https://images.unsplash.com/photo-1460881680858-30d872d5b530?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80'
-    
+
   },
   {
     id: '2',
@@ -33,8 +33,28 @@ const MOVIE_DATA = [
     image: 'https://img.cinemablend.com/filter:scale/quill/0/f/5/2/a/6/0f52a6843a25c1a5c1f9a0c00548cad9e1d912e2.jpg?mw=600',
     cover: 'https://images.unsplash.com/photo-1536972781967-a8aedfb21059?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
   }
-  
+
 ]
+
+const CATEGORY_DATA = [
+  { id: 'c-1', name: 'drama' },
+  { id: 'c-2', name: 'action' },
+  { id: 'c-3', name: 'adventure' },
+  { id: 'c-4', name: 'historical' },
+]
+
+// 1. getCategories function
+// 2. get categories in index page
+// 3. provide categories to sidemenu
+// 4. in sidemenu iterate categories and display them
+
+export const getCategories = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(CATEGORY_DATA)
+    }, 50)
+  })
+}
 
 export const getMovies = () => {
   return new Promise((resolve, reject) => {
@@ -43,6 +63,20 @@ export const getMovies = () => {
     }, 1000)
   })
 }
+
+
+export const createMovie = (movie) => {
+  return new Promise((resolve, reject) => {
+    //create id for movie
+    movie.id = Math.random().toString(36).substr(2,7)
+
+    MOVIE_DATA.push(movie)
+    setTimeout(() => {
+      resolve(MOVIE_DATA)
+    }, 1000)
+  })
+}
+
 
 export const getMoviesById = (id) => {
   return new Promise((resolve, reject) => {

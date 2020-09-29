@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import SideMenu from '../components/sidemenu'
 import Carousel from '../components/carousel'
 import MovieList from '../components/movielist'
-import { getMovies } from '../actions'
+import { getMovies, getCategories } from '../actions'
 
 
-const Home = ({ movies, images }) => {
+const Home = ({ movies, images, categories }) => {
   // const [movies, setMovies] = useState([])
 
   // useEffect(() => {
@@ -23,7 +23,7 @@ const Home = ({ movies, images }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <SideMenu />
+              <SideMenu categories={categories} />
             </div>
             <div className="col-lg-9">
               <Carousel images={images} />
@@ -40,10 +40,12 @@ const Home = ({ movies, images }) => {
 
 Home.getInitialProps = async () => {
   const movies = await getMovies()
+  const categories = await getCategories()
   const images = movies.map(movie => ({ id: `image-${movie.id}`, url: movie.cover, name: movie.name }))
   return {
     movies,
-    images
+    images,
+    categories
   }
 }
 
