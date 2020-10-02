@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 
 
-const ModalForm = ({ handleFormSubmit }) => {
+const ModalForm = ({ handleFormSubmit, initialData }) => {
 
-  const [form, setForm] = useState({
+  const defaultData = {
     name: '',
     description: '',
     rating: '',
     longDesc: '',
     image: '',
     cover: ''
-  })
+  }
+
+  const formData = initialData ? { ...initialData } : defaultData
+
+  const [form, setForm] = useState(formData)
 
   const handleChange = (e) => {
     const { name, value } = e.target
